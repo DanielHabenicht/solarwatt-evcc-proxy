@@ -40,6 +40,18 @@ The proxy will be available at `http://localhost:8080`
 
 ### Using Docker
 
+#### Using pre-built image from GitHub Container Registry
+
+Pull and run the latest image:
+```bash
+docker run -d -p 8080:8080 \
+  -e SOLARWATT_USERNAME=your_username \
+  -e SOLARWATT_PASSWORD=your_password \
+  ghcr.io/danielhabenicht/solarwatt-evcc-proxy:latest
+```
+
+#### Building locally
+
 Build and run the container:
 ```bash
 docker build -t solarwatt-proxy .
@@ -48,6 +60,13 @@ docker run -d -p 8080:8080 \
   -e SOLARWATT_PASSWORD=your_password \
   solarwatt-proxy
 ```
+
+#### Available Docker Tags
+
+- `latest` - Latest stable release from the main branch
+- `v*.*.*` - Specific version tags (e.g., `v1.0.0`)
+- `main` - Latest commit on the main branch
+- Multi-architecture support: `linux/amd64`, `linux/arm64`
 
 ### Local Development
 
