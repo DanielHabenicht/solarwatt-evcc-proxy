@@ -32,6 +32,13 @@ docker-compose up -d
 
 The proxy will be available at `http://localhost:80`
 
+#### Available Docker Tags
+
+- `latest` - Latest stable release from the main branch
+- `v*.*.*` - Specific version tags (e.g., `v1.0.0`)
+- `main` - Latest commit on the main branch
+- Multi-architecture support: `linux/amd64`, `linux/arm64`
+
 ### Local Development
 
 1. Install dependencies:
