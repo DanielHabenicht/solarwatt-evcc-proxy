@@ -58,9 +58,11 @@ pip install -r requirements.txt
 
 2. Set environment variables:
 ```bash
+export SOLARWATT_PASSWORD=
+export SOLARWATT_API_URL=http://192.168.100.120
+
+# Optional (default installer)
 export SOLARWATT_USERNAME=your_username
-export SOLARWATT_PASSWORD=your_password
-export SOLARWATT_API_URL=https://api.solarwatt.com
 ```
 
 3. Run the server:
