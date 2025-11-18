@@ -138,6 +138,7 @@ The proxy:
 - Use HTTPS in production environments
 - Consider using Docker secrets for credential management in production
 
+
 ## Alternatives
 
 https://community.simon42.com/t/solarwatt-rest-api-verlangt-authorisierung-nach-software-update/66521/20
@@ -147,11 +148,3 @@ https://github.com/evcc-io/evcc/issues/24549
 ### Modbus 
 - https://community.simon42.com/t/solarwatt-vision-steuern-via-modbus/67335
 - https://github.com/nathanmarlor/foxess_modbus?tab=readme-ov-file
-
-## License
-
-MIT License - see LICENSE file for details
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
