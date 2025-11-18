@@ -20,13 +20,20 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
 # Configuration from environment variables
-SOLARWATT_API_URL = os.getenv("SOLARWATT_API_URL", "https://api.solarwatt.com")
+SOLARWATT_API_URL = os.getenv("SOLARWATT_API_URL", "").rstrip("/")
 SOLARWATT_USERNAME = os.getenv("SOLARWATT_USERNAME") or "installer"
 SOLARWATT_PASSWORD = os.getenv("SOLARWATT_PASSWORD", "")
 PROXY_PORT = int(os.getenv("PROXY_PORT", "8080"))
 PROXY_HOST = os.getenv("PROXY_HOST", "0.0.0.0")
 
 LOGIN_URL = SOLARWATT_API_URL + "/auth/login"
+
+# Check if credentials are configured
+if not SOLARWATT_USERNAME or not SOLARWATT_PASSWORD:
+    logger.warning(
+        "Solarwatt credentials not configured. Set SOLARWATT_USERNAME and "
+        "SOLARWATT_PASSWORD environment variables."
+    )
 
 
 def retrieve_auth_cookie():
@@ -73,7 +80,7 @@ def forward_request(path):
         Response object with the proxied response
     """
     # Build the target URL
-    target_url = f"{SOLARWATT_API_URL.rstrip('/')}/{path.lstrip('/')}"
+    target_url = f"{SOLARWATT_API_URL}/{path.lstrip('/')}"
 
     # Get query parameters
     params = request.args.to_dict()
@@ -153,12 +160,6 @@ def health():
 
 
 if __name__ == "__main__":
-    # Check if credentials are configured
-    if not SOLARWATT_USERNAME or not SOLARWATT_PASSWORD:
-        logger.warning(
-            "Solarwatt credentials not configured. Set SOLARWATT_USERNAME and SOLARWATT_PASSWORD environment variables."
-        )
-
     logger.info(f"Starting proxy server on {PROXY_HOST}:{PROXY_PORT}")
     logger.info(f"Proxying to: {SOLARWATT_API_URL}")
 
