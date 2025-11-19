@@ -104,8 +104,10 @@ def forward_request(path):
             allow_redirects=False,
             timeout=30,
         )
-        if response.status_code == 401:
-            logger.warning("401 Unauthorized – Cookie abgelaufen, erneuere...")
+        if response.status_code == 401 or response.status_code == 303:
+            logger.warning(
+                f"Status Code: {response.status_code} - Cookie abgelaufen, erneuere..."
+            )
             retrieve_auth_cookie()
             # Retry the request
             response = session.request(
